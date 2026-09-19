@@ -3,13 +3,12 @@ import { X } from "lucide-react";
 import {
   WHEEL,
   MULTICOLOR,
-  DRIVE_ITEMS,
-  EXPERIENCE_ITEMS,
-  PROJECT_ITEMS,
   type SectionKey,
 } from "@/data/content";
 import { OriginSection } from "./sections/OriginSection";
-import { GenericListSection } from "./sections/GenericListSection";
+import { DriveSection } from "./sections/DriveSection";
+import { ExperienceSection } from "./sections/ExperienceSection";
+import { ProjectsSection } from "./sections/ProjectsSection";
 import { SkillsSection } from "./sections/SkillsSection";
 import { ThinkingSection } from "./sections/ThinkingSection";
 import { LifeSection } from "./sections/LifeSection";
@@ -32,11 +31,11 @@ function SectionContent({
     case "origin":
       return <OriginSection />;
     case "drive":
-      return <GenericListSection items={DRIVE_ITEMS} accent="#E5484D" />;
+      return <DriveSection />;
     case "experience":
-      return <GenericListSection items={EXPERIENCE_ITEMS} accent="#EC5C8D" />;
+      return <ExperienceSection />;
     case "projects":
-      return <GenericListSection items={PROJECT_ITEMS} accent="#8E5BEF" />;
+      return <ProjectsSection />;
     case "skills":
       return <SkillsSection />;
     case "thinking":
@@ -60,6 +59,7 @@ export function SectionPanel({ active, onClose, onContact }: SectionPanelProps) 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.42, ease: "easeOut" }}
         >
           <div
             className="absolute inset-0 backdrop-blur-sm"
@@ -73,10 +73,10 @@ export function SectionPanel({ active, onClose, onContact }: SectionPanelProps) 
           />
           <motion.div
             className="relative my-4 flex w-full max-w-3xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl md:my-10"
-            initial={{ scale: 0.9, opacity: 0, y: 30 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.95, opacity: 0, y: 20 }}
-            transition={{ type: "spring", stiffness: 260, damping: 28 }}
+            initial={{ scale: 0.82, opacity: 0, y: 38, filter: "blur(8px)" }}
+            animate={{ scale: 1, opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ scale: 0.88, opacity: 0, y: 24, filter: "blur(5px)" }}
+            transition={{ duration: 0.68, ease: [0.16, 1, 0.3, 1] }}
           >
             <div
               className="flex items-start justify-between gap-4 px-6 py-5 md:px-8"

@@ -8,12 +8,6 @@ interface MulticolorSectionProps {
 export function MulticolorSection({ onContact }: MulticolorSectionProps) {
   return (
     <div className="space-y-8">
-      {/* 关于我 */}
-      <div>
-        <h3 className="text-lg font-semibold text-gray-900">关于我</h3>
-        <p className="mt-2 text-[15px] leading-7 text-gray-600">{PROFILE.bio}</p>
-      </div>
-
       {/* 联系我 */}
       <div>
         <h3 className="text-lg font-semibold text-gray-900">联系我</h3>
@@ -52,7 +46,7 @@ export function MulticolorSection({ onContact }: MulticolorSectionProps) {
       {/* 结语 */}
       <div className="rounded-2xl bg-gradient-to-br from-amber-50 via-pink-50 to-green-50 p-6 text-center">
         <p className="whitespace-pre-line text-[15px] leading-8 text-gray-700">
-          {MULTICOLOR.connect}
+          {MULTICOLOR.outro}
         </p>
       </div>
     </div>

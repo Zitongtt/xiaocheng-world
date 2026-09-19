@@ -400,3 +400,412 @@
     transition: none !important;
   }
 }
+
+/* ================================================================
+   首页视觉：柔和的天空渐变 + 人物抠图 + 气泡/纸飞机点缀
+   ================================================================ */
+.site-canvas {
+  background-color: #fbfdff;
+  background-image:
+    radial-gradient(60rem 44rem at 10% -10%, rgba(255, 236, 214, 0.85), transparent 62%),
+    radial-gradient(56rem 44rem at 88% -4%, rgba(255, 224, 236, 0.8), transparent 64%),
+    radial-gradient(64rem 46rem at 4% 30%, rgba(255, 233, 208, 0.6), transparent 66%),
+    radial-gradient(56rem 42rem at 96% 34%, rgba(232, 214, 255, 0.55), transparent 68%),
+    radial-gradient(64rem 48rem at 50% 108%, rgba(180, 226, 255, 0.75), transparent 70%),
+    linear-gradient(168deg, #fffaf2 0%, #fdf7ff 34%, #f2f8ff 68%, #eaf3ff 100%);
+}
+
+/* 首页最上面那层淡淡的彩虹（呼应色环） */
+.hero-rainbow {
+  background: linear-gradient(
+    100deg,
+    rgba(255, 209, 102, 0.35),
+    rgba(255, 138, 128, 0.28) 22%,
+    rgba(255, 158, 205, 0.3) 44%,
+    rgba(186, 160, 255, 0.28) 66%,
+    rgba(140, 200, 255, 0.3) 85%,
+    rgba(150, 232, 190, 0.28)
+  );
+  filter: blur(48px);
+}
+
+/* 气泡缓慢上浮 */
+.bubble {
+  animation: bubble-float 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes bubble-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(6px, -22px, 0) scale(1.06);
+    opacity: 1;
+  }
+}
+
+/* 「Scroll to explore」的小鼠标图标在动 */
+.scroll-hint {
+  animation: scroll-bob 2.4s ease-in-out infinite;
+}
+
+@keyframes scroll-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble,
+  .scroll-hint {
+    animation: none;
+  }
+}
+
+/* 首页顶部的柔光斑（缓慢漂浮） */
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(64px);
+  opacity: 0.75;
+  will-change: transform;
+  animation: aurora-float 18s ease-in-out infinite;
+}
+
+.aurora-blob--slow {
+  animation-duration: 26s;
+  animation-direction: reverse;
+}
+
+@keyframes aurora-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -26px, 0) scale(1.06);
+  }
+}
+
+/* 拱门（人像）外框：上方为半椭圆拱顶，下方为圆角 */
+.arch-frame {
+  border-top-left-radius: 50% 38%;
+  border-top-right-radius: 50% 38%;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+/* 图片区域底部融进背景渐变，让 Hero 与色环区连成一片 */
+.hero-bleed {
+  background: linear-gradient(
+    to bottom,
+    rgba(253, 252, 248, 0) 0%,
+    rgba(253, 252, 248, 0.22) 55%,
+    rgba(253, 252, 248, 0.6) 100%
+  );
+}
+
+/* 色环背后的彩色光晕：呼应「用色环打开不同的自己」 */
+.wheel-halo {
+  background: conic-gradient(
+    from 200deg,
+    #f5c518,
+    #e5484d,
+    #ec5c8d,
+    #8e5bef,
+    #3b82f6,
+    #8b95a1,
+    #2fbf71,
+    #f5c518
+  );
+  filter: blur(72px);
+  opacity: 0.22;
+  animation: wheel-spin 40s linear infinite;
+}
+
+@keyframes wheel-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob,
+  .wheel-halo {
+    animation: none;
+  }
+}
+
+/* Homepage recreation: airy editorial layout with a soft, organic color wheel. */
+.home-hero {
+  background:
+    radial-gradient(48rem 35rem at 52% 52%, rgba(214, 241, 250, 0.48), transparent 64%),
+    radial-gradient(36rem 30rem at 89% 70%, rgba(255, 224, 214, 0.46), transparent 67%),
+    linear-gradient(114deg, #fffdf7 0%, #fcfdff 53%, #f7fbff 100%);
+}
+
+.home-glow {
+  position: absolute;
+  z-index: -1;
+  border-radius: 999px;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.home-glow--blue {
+  left: 20%;
+  top: 14%;
+  width: 38rem;
+  height: 31rem;
+  background: rgba(204, 235, 255, 0.34);
+}
+
+.home-glow--peach {
+  right: -9rem;
+  bottom: -4rem;
+  width: 35rem;
+  height: 27rem;
+  background: rgba(255, 218, 207, 0.33);
+}
+
+.handwritten {
+  font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+}
+
+.hero-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 116px;
+  border: 1px solid rgba(121, 153, 204, 0.55);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.76);
+  padding: 0.68rem 1.15rem;
+  color: #415170;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 10px 28px -20px rgba(43, 77, 135, 0.65);
+  backdrop-filter: blur(12px);
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.hero-action:hover {
+  transform: translateY(-2px);
+  background: #fff;
+  box-shadow: 0 13px 30px -18px rgba(43, 77, 135, 0.75);
+}
+
+.hero-action--primary {
+  border-color: transparent;
+  background: linear-gradient(135deg, #4779cb, #3468bd);
+  color: #fff;
+  box-shadow: 0 15px 30px -17px rgba(44, 96, 184, 0.9);
+}
+
+.hero-action--primary:hover { background: linear-gradient(135deg, #5284d4, #3d72c6); }
+
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  height: 100%;
+  align-items: center;
+  padding: 0 16px;
+  color: #697389;
+  font-size: 12px;
+  font-weight: 500;
+  transition: color 160ms ease;
+}
+
+.nav-link:hover,
+.nav-link--active { color: #1f2c46; }
+
+.nav-link--active::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  bottom: 11px;
+  left: 16px;
+  height: 2px;
+  border-radius: 999px;
+  background: #263a60;
+}
+
+.nav-icon {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(226, 231, 239, 0.8);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.74);
+  color: #263145;
+  box-shadow: 0 6px 18px -14px rgba(33, 46, 70, 0.8);
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.nav-icon:hover { transform: translateY(-1px); background: #fff; }
+
+.organic-wheel {
+  isolation: isolate;
+  will-change: transform;
+}
+
+.organic-wheel__halo {
+  position: absolute;
+  inset: 7%;
+  z-index: 0;
+  border-radius: 48% 52% 46% 54% / 54% 45% 55% 46%;
+  background: conic-gradient(from -22deg, #f8d974, #eb8b7d, #e993bd, #a88bea, #789ce8, #acb6c4, #70c890, #c0a0e9, #f8d974);
+  filter: blur(34px) saturate(.82);
+  opacity: .29;
+  animation: organic-breathe 9s ease-in-out infinite;
+}
+
+.organic-wheel__aura {
+  opacity: .5;
+  transform-origin: 250px 250px;
+  animation: organic-drift 14s ease-in-out infinite;
+}
+
+.organic-wheel__orbit {
+  fill: none;
+  stroke: rgba(103, 143, 198, .16);
+  stroke-width: 1;
+  stroke-dasharray: 2 7;
+}
+
+.organic-wheel__orbit--inner {
+  stroke: rgba(114, 169, 185, .13);
+  stroke-dasharray: none;
+}
+
+.organic-segment {
+  cursor: pointer;
+  outline: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 420ms ease, transform 520ms cubic-bezier(.2,.8,.2,1), filter 420ms ease;
+}
+
+.organic-segment__shape {
+  stroke: none;
+  transition: filter 420ms ease;
+}
+
+.organic-segment__label {
+  pointer-events: none;
+  color: white;
+  filter: drop-shadow(0 1px 5px rgba(42, 61, 92, .2));
+}
+
+.organic-segment__en {
+  fill: rgba(255,255,255,.98);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 580;
+  letter-spacing: .01em;
+}
+
+.organic-segment__cn {
+  fill: rgba(255,255,255,.84);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.organic-wheel.has-hover .organic-segment:not(.is-hovered) {
+  opacity: .62;
+  filter: saturate(.8);
+}
+
+.organic-segment.is-hovered,
+.organic-segment:focus-visible {
+  transform: translate(var(--float-x), var(--float-y)) scale(1.045);
+  filter: brightness(1.075) saturate(1.08) drop-shadow(0 8px 13px rgba(88, 111, 151, .18));
+}
+
+.organic-wheel.is-opening .organic-segment:not(.is-selected) {
+  opacity: 0;
+  transform: scale(.88);
+  filter: blur(5px);
+}
+
+.organic-wheel.is-opening .organic-segment.is-selected {
+  transform: translate(var(--open-x), var(--open-y)) scale(1.23);
+  filter: brightness(1.08) saturate(1.08) drop-shadow(0 16px 24px rgba(76, 96, 133, .22));
+}
+
+.organic-center {
+  cursor: pointer;
+  outline: none;
+  transform-origin: 250px 250px;
+  filter: drop-shadow(0 8px 15px rgba(100, 124, 158, .12));
+  transition: opacity 430ms ease, transform 430ms ease, filter 430ms ease;
+}
+
+.organic-center:hover,
+.organic-center:focus-visible {
+  transform: scale(1.025);
+  filter: drop-shadow(0 10px 18px rgba(100, 124, 158, .16));
+}
+
+.organic-wheel.is-opening .organic-center,
+.organic-wheel.is-opening .organic-wheel__orbit {
+  opacity: 0;
+  transform: scale(.92);
+}
+
+@keyframes organic-breathe {
+  0%, 100% { transform: scale(.985) rotate(-1deg); opacity: .25; }
+  50% { transform: scale(1.035) rotate(1deg); opacity: .34; }
+}
+
+@keyframes organic-drift {
+  0%, 100% { transform: rotate(-.7deg) scale(1); }
+  50% { transform: rotate(.8deg) scale(1.018); }
+}
+
+@media (max-width: 1023px) {
+  .home-hero { overflow: visible; padding-bottom: 5rem; }
+  .home-stage { height: auto !important; min-height: 0 !important; }
+  .home-photo p, .home-photo > svg, .home-photo > div:not(.photo-card) { display: none; }
+  .home-wheel { width: min(92vw, 540px) !important; }
+}
+
+@media (max-width: 520px) {
+  .home-intro h1 { flex-direction: column; align-items: center; }
+  .home-intro p:last-of-type { max-width: 19rem; margin-inline: auto; }
+  .hero-action { min-width: 104px; padding-inline: .9rem; }
+  .organic-segment__en { font-size: 14px; }
+  .organic-segment__cn { font-size: 10px; }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  /* 1024–1279：左边自我介绍（530px）和右边照片（330px）几乎占满，
+     色环放大到再大就会压到照片左下角，所以这一段单独收一档。 */
+  .home-wheel { width: min(36vw, 62svh, 470px) !important; }
+}
+
+@media (min-width: 1280px) {
+  /* 色环放大：用 vw 限制左右（别碰到左边的自我介绍和右边的照片），
+     用 svh 限制上下（别顶到上方内容），最后给一个像素上限。 */
+  .home-wheel { width: min(42vw, 70svh, 700px) !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .organic-wheel__halo,
+  .organic-wheel__aura { animation: none; }
+  .organic-segment,
+  .organic-center { transition-duration: .01ms; }
+}
