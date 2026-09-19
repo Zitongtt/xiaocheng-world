@@ -1,0 +1,14 @@
+# 统一换行符，避免 Windows 上的 CRLF 警告与无意义的整文件 diff
+* text=auto eol=lf
+
+# Windows 脚本保持 CRLF（记事本/双击运行更友好）
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# 二进制文件不要做换行转换
+*.jpg binary
+*.png binary
+*.pdf binary
+*.ico binary
+*.woff binary
+*.woff2 binary
