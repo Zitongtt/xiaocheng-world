@@ -33,6 +33,10 @@ jobs:
       - id: pages
         uses: actions/configure-pages@v5
 
+      # 之前缺了这一步：没装依赖就直接 build，tsc / vite 都不存在，2 秒就失败。
+      - name: Install dependencies
+        run: pnpm --dir frontend install --no-frozen-lockfile
+
       - name: Build
         run: pnpm --dir frontend build
         env:
